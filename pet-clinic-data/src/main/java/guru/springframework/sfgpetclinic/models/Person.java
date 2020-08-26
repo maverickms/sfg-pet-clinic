@@ -1,7 +1,15 @@
 package guru.springframework.sfgpetclinic.models;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
+// never working with this, will always be extended
+// need not be stored in the DB
 public class Person extends BaseEntity {
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
 
     public String getFirstName() {
