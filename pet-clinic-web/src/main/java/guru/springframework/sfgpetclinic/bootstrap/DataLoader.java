@@ -54,80 +54,69 @@ public class DataLoader implements CommandLineRunner {
         Speciality savedSurgery = specialityService.save(surgery);
         Speciality savedDentistry = specialityService.save(dentistry);
 
-        Owner owner1 = new Owner();
-        owner1.setId(1L);
-        owner1.setFirstName("Rahul");
-        owner1.setLastName("Dravid");
-        owner1.setAddress("121 Firenze Terrace");
-        owner1.setCity("San Jose");
-        owner1.setTelephone("213123123");
+        Owner rahul = new Owner();
+        rahul.setFirstName("Rahul");
+        rahul.setLastName("Dravid");
+        rahul.setAddress("121 Firenze Terrace");
+        rahul.setCity("San Jose");
+        rahul.setTelephone("213123123");
 
         Pet rahulsPet = new Pet();
         rahulsPet.setPetType(savedDogPetType);
         rahulsPet.setName("Tillu");
         rahulsPet.setBirthDate(LocalDate.now());
-        rahulsPet.setOwner(owner1);
-        owner1.getPets().add(rahulsPet);
+        rahulsPet.setOwner(rahul);
+        rahul.getPets().add(rahulsPet);
 
-        ownerService.save(owner1);
+        ownerService.save(rahul);
 
-        Owner owner2 = new Owner();
-        owner2.setId(2L);
-        owner2.setFirstName("Virendra");
-        owner2.setLastName("Sehwag");
-        owner2.setAddress("333 Susa Terrace");
-        owner2.setCity("Union City");
-        owner2.setTelephone("112113114");
+        Owner viru = new Owner();
+        viru.setFirstName("Virendra");
+        viru.setLastName("Sehwag");
+        viru.setAddress("333 Susa Terrace");
+        viru.setCity("Union City");
+        viru.setTelephone("112113114");
 
         Pet virusPet = new Pet();
         virusPet.setPetType(savedDogPetType);
         virusPet.setName("Dhamaka");
         virusPet.setBirthDate(LocalDate.now());
-        virusPet.setOwner(owner2);
-        owner2.getPets().add(virusPet);
+        virusPet.setOwner(viru);
+        viru.getPets().add(virusPet);
 
-        ownerService.save(owner2);
+        ownerService.save(viru);
 
-        Owner owner3 = new Owner();
-        owner3.setId(3L);
-        owner3.setFirstName("Roger");
-        owner3.setLastName("Federer");
-        owner3.setAddress("555 Via Lucca");
-        owner3.setCity("Newark");
-        owner3.setTelephone("2231234122");
+        Owner roger = new Owner();
+        roger.setFirstName("Roger");
+        roger.setLastName("Federer");
+        roger.setAddress("555 Via Lucca");
+        roger.setCity("Newark");
+        roger.setTelephone("2231234122");
 
         Pet rogersPet = new Pet();
         rogersPet.setPetType(savedCatPetType);
         rogersPet.setName("Ace");
         rogersPet.setBirthDate(LocalDate.now());
-        rogersPet.setOwner(owner3);
-        owner3.getPets().add(rogersPet);
+        rogersPet.setOwner(roger);
+        roger.getPets().add(rogersPet);
 
-        ownerService.save(owner3);
+        ownerService.save(roger);
 
-        Visit catVisit = new Visit();
-        catVisit.setPet(rogersPet);
-        catVisit.setDescription("Sneezy Kitty");
-
-        visitService.save(catVisit);
-        System.out.println("Loaded Visits ..");
-
-        Owner owner4 = new Owner();
-        owner4.setId(4L);
-        owner4.setFirstName("Rafael");
-        owner4.setLastName("Nadal");
-        owner4.setAddress("777 North 1st Street");
-        owner4.setCity("San Jose");
-        owner4.setTelephone("4123123155");
+        Owner rafa = new Owner();
+        rafa.setFirstName("Rafael");
+        rafa.setLastName("Nadal");
+        rafa.setAddress("777 North 1st Street");
+        rafa.setCity("San Jose");
+        rafa.setTelephone("4123123155");
 
         Pet rafasPet = new Pet();
         rafasPet.setPetType(cat);
         rafasPet.setName("Raka");
         rafasPet.setBirthDate(LocalDate.now());
-        rafasPet.setOwner(owner4);
-        owner4.getPets().add(rogersPet);
+        rafasPet.setOwner(rafa);
+        rafa.getPets().add(rafasPet);
 
-        ownerService.save(owner4);
+        ownerService.save(rafa);
 
         System.out.println("Loaded Owners ..");
 
@@ -150,5 +139,12 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Loaded Vets ..");
+
+        Visit catVisit = new Visit();
+        catVisit.setDate(LocalDate.now());
+        catVisit.setPet(rafasPet);
+        catVisit.setDescription("Sneezy Cat");
+        visitService.save(catVisit);
+        System.out.println("Loaded Visits ..");
     }
 }
