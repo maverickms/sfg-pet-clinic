@@ -23,7 +23,11 @@ public class VisitMapService extends AbstractMapService<Visit, Long> implements 
     public Visit save(Visit visit) {
         if(visit.getPet() == null || visit.getPet().getOwner() == null || visit.getPet().getId() == null
             || visit.getPet().getOwner().getId() == null) {
-            throw new RuntimeException("Invalid Visit");
+            System.out.println((visit.getPet() == null)?"getPet is null":"all good with getPet");
+            System.out.println((visit.getPet().getOwner() == null)?"getOwner is null":"all good with getOwner");
+            System.out.println((visit.getPet().getId() == null)?"getPet.getId is null":"All good with getPet.getid");
+            System.out.println((visit.getPet().getOwner().getId() == null)?"visit.getPet().getOwner().getId() is null":"all good with visit.getPet().getOwner().getId()");
+            throw new RuntimeException("Invalid Visit == ");
         }
 
         return super.save(visit);
