@@ -103,6 +103,15 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(roger);
 
         Owner rafa = new Owner();
+        // rafa.setId(4L);
+        // this explicit setting of an ID messes up JPA working
+        // the case from Owner to Pet does not work and the pets do not get saved when the owner is saved
+        // was getting the below error on the statement that was saving a Visit
+        // org.hibernate.TransientPropertyValueException: object references an unsaved transient instance -
+        // save the transient instance before flushing :
+        // guru.springframework.sfgpetclinic.models.Visit.pet -> guru.springframework.sfgpetclinic.models.Pet;
+        //
+        // removing the explicit setting of the ID and letting JPA do it, solved the problem
         rafa.setFirstName("Rafael");
         rafa.setLastName("Nadal");
         rafa.setAddress("777 North 1st Street");
@@ -121,7 +130,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loaded Owners ..");
 
         Vet vet1 = new Vet();
-        vet1.setId(1L);
+        // also removing the explicit setting of ID from the vet objects
         vet1.setFirstName("Shambhu");
         vet1.setLastName("Nath");
         vet1.getSpecialities().add(radiology);
@@ -130,7 +139,6 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
-        vet2.setId(2L);
         vet2.setFirstName("Chiraunjee");
         vet2.setLastName("Lal");
         vet2.getSpecialities().add(surgery);
